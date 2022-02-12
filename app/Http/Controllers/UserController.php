@@ -20,5 +20,10 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
+    public function showProfile()
+    {
+        return view('pages.user.profile');
+    }
 }
 

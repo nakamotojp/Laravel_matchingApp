@@ -16,6 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -30,15 +31,11 @@
                             <ul class="navbar-nav mr-auto">
                                 @auth
                                     <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            <i class="fa fa-cog" aria-hidden="true"></i>
-                                        </a>
-
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <div>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
+                                                <i class="fas fa-file-export" aria-hidden="true"></i>
                                             </a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -76,6 +73,11 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('matches.index')}}">
                                             <i class="fa fa-comments" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('users.profile') }}">
+                                            <i style="width:20px; height:20px;" class="far fa-address-card" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                 @endguest
