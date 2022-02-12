@@ -15,4 +15,10 @@ class Swipe extends Model
         'is_like',
 
     ];
+
+    public function toUser()
+    {
+        return $this->belongsTo('\App\Models\User', 'to_user_id', 'id');
+
+    }
 }
