@@ -30,4 +30,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');
     Route::post('/swipes', [SwipeController::class, 'store'])->name('swipes.store');
     Route::get('/mathes', [MatchController::class, 'index'])->name('matches.index');
+    Route::post('/profile', [UserController::class, 'storeProfile'])->name('users.storeProfile');
 });
