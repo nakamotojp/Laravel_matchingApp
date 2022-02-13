@@ -76,7 +76,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('users.profile') }}">
+                                        <a class="nav-link" href="{{ route('users.showProfile') }}">
                                             <i style="width:20px; height:20px;" class="far fa-address-card" aria-hidden="true"></i>
                                         </a>
                                     </li>
@@ -88,7 +88,7 @@
             </div>
 
             @if (session('flash_message'))
-                <div class="flash_message bg-success text-center py-3 my-0">
+                <div class="flash_message bg-info text-center py-3 my-0">
                     {{ session('flash_message') }}
                 </div>
             @endif

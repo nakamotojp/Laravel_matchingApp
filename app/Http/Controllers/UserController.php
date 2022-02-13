@@ -17,14 +17,24 @@ class UserController extends Controller
         $swiped = Swipe::where('from_user_id', Auth::user()->id)->get()->pluck('to_user_id');
 
         $user = User::where('id','<>',Auth::user()->id)->whereNotIn('id', $swiped)->first();
-        return view('pages.user.index',[
-            'user' => $user
-        ]);
+        return view('pages.user.index',['user' => $user]);
     }
 
     public function showProfile()
     {
-        return view('pages.user.profile');
+        $userId = Profile::where('user_id', Auth::user()->id)->exists();
+
+        if($userId){
+            $profile = Profile::where('user_id', Auth::user()->id)->first();
+            return view('pages.user.showProfile')->with('profile', $profile);
+        }else{
+            return view('pages.user.postProfile');
+        }
+    }
+
+    public function postProfile()
+    {
+            return view('pages.user.postProfile');
     }
 
     public function storeProfile(Request $request)
@@ -36,7 +46,24 @@ class UserController extends Controller
             'introduce' => $request->input('introduce'),
         ]);
 
-        return redirect(url('/users'));
+        return redirect(url('/profile'))->with('flash_message', 'posting successful！');
+    }
+
+    public function showEditProfile() {
+        $profile = Profile::where('user_id', Auth::user()->id)->first();
+        return view('pages.user.editProfile')->with('profile', $profile);
+
+    }
+
+    public function updateEditProfile(Request $request) {
+        $profile = Profile::where('user_id',Auth::user()->id)->first();
+        $profile->age = $request->input('age');
+        $profile->income = $request->input('income');
+        $profile->introduce = $request->input('introduce');
+        $profile->save();
+
+        return redirect(url('/profile'))->with('flash_message', 'updating successful！');
+
     }
 }
 

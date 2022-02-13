@@ -8,9 +8,10 @@
     @endif
 
     @if(!is_null($user))
-  <div class="tphoto">
-    <img src="{{ $user->img_url }}" title="tphoto" alt="Tinder Photo" />
     <div class="tname">{{ $user->name }}</div>
+  <div class="tphoto">
+    <img src="{{ $user->img_url }}" title="tphoto" style="width:400px; height:400px; object-fit:cover;" alt="Tinder Photo" />
+
   </div>
 
   <div class="tcontrols">

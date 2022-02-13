@@ -27,8 +27,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');
+
     Route::post('/swipes', [SwipeController::class, 'store'])->name('swipes.store');
     Route::get('/mathes', [MatchController::class, 'index'])->name('matches.index');
-    Route::post('/profile', [UserController::class, 'storeProfile'])->name('users.storeProfile');
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('users.showProfile');
+    Route::post('/postProfile', [UserController::class, 'storeProfile'])->name('users.storeProfile');
+    Route::get('/editProfile', [UserController::class, 'showEditProfile'])->name('users.editProfile');
+    Route::post('/editProfile', [UserController::class, 'updateEditProfile'])->name('users.updateProfile');
 });
