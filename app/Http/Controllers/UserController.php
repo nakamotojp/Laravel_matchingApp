@@ -22,14 +22,16 @@ class UserController extends Controller
 
     public function showProfile()
     {
-        $userId = Profile::where('user_id', Auth::user()->id)->exists();
+        $exists = Profile::where('user_id', Auth::user()->id)->exists();
+        $user = User::where('id', Auth::user()->id)->first();
 
-        if($userId){
+        if($exists){
             $profile = Profile::where('user_id', Auth::user()->id)->first();
-            return view('pages.user.showProfile')->with('profile', $profile);
+            return view('pages.user.showProfile', compact('exists','profile','user'));
         }else{
-            return view('pages.user.postProfile');
+            return view('pages.user.postProfile', compact('exists','user'));
         }
+
     }
 
     public function postProfile()
