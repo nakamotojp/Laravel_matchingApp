@@ -15,7 +15,7 @@
   \*****************************/
 /***/ (() => {
 
-eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZXNDb250ZW50IjpbIiJdLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+eval("$(\"#sendmessage\").on(\"click\", function () {\n  var str1 = $(\"#message\").val(); // テキストボックスのvalue値を取得\n\n  console.log(str1); // spanタグに値を設定\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzP2NlZDYiXSwibmFtZXMiOlsiJCIsIm9uIiwic3RyMSIsInZhbCIsImNvbnNvbGUiLCJsb2ciXSwibWFwcGluZ3MiOiJBQUFBQSxDQUFDLENBQUMsY0FBRCxDQUFELENBQWtCQyxFQUFsQixDQUFxQixPQUFyQixFQUE4QixZQUFZO0FBQ3RDLE1BQUlDLElBQUksR0FBR0YsQ0FBQyxDQUFDLFVBQUQsQ0FBRCxDQUFjRyxHQUFkLEVBQVgsQ0FEc0MsQ0FDTjs7QUFDaENDLEVBQUFBLE9BQU8sQ0FBQ0MsR0FBUixDQUFZSCxJQUFaLEVBRnNDLENBRW5CO0FBQ3BCLENBSEgiLCJzb3VyY2VzQ29udGVudCI6WyIkKFwiI3NlbmRtZXNzYWdlXCIpLm9uKFwiY2xpY2tcIiwgZnVuY3Rpb24gKCkge1xuICAgIHZhciBzdHIxID0gJChcIiNtZXNzYWdlXCIpLnZhbCgpOyAvLyDjg4bjgq3jgrnjg4jjg5zjg4Pjgq/jgrnjga52YWx1ZeWApOOCkuWPluW+l1xuICAgIGNvbnNvbGUubG9nKHN0cjEpOyAvLyBzcGFu44K/44Kw44Gr5YCk44KS6Kit5a6aXG4gIH0pO1xuIl0sImZpbGUiOiIuL3Jlc291cmNlcy9qcy9hcHAuanMuanMiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
 
 /***/ }),
 

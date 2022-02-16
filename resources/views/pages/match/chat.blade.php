@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="chat bg-light p-4" style="height:630px;">
-      <div class="message d-flex flex-row align-items-start mb-4">
+      {{-- <div class="message d-flex flex-row align-items-start mb-4">
         <div class="message-icon rounded-circle bg-secondary text-white fs-3">
           <i class="fas fa-user"></i>
         </div><!-- .message-icon -->
@@ -18,9 +18,18 @@
         <p class="message-text p-2 me-2 mb-0 bg-info">
           サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。
         </p><!-- .message-text -->
-      </div><!-- .message -->
+      </div><!-- .message --> --}}
+
+      <p>たるチャットです。PHP/Javascript[jQuery/Ajax]で動いています</p>
+       <p></p>
+         <form method="post" onsubmit="writeMessage(); return false;">
+            <input id="message" name="message" type="text" value="" />
+            <input type="button" value="send" id="sendmessage">
+        </form>
+         <div id="messageTextBox"></div>
+         <button id="test">testclick</button>
 
     </div><!-- .chat -->
-  </div>
+
 
 @endsection
