@@ -23,6 +23,7 @@
       <p>たるチャットです。PHP/Javascript[jQuery/Ajax]で動いています</p>
        <p></p>
          <form method="post" onsubmit="writeMessage(); return false;">
+            <input id="to_user_id" name="to_user_id" type="hidden" value="{{ $user->id }}" />
             <input id="message" name="message" type="text" value="" />
             <input type="button" value="send" id="sendmessage">
         </form>

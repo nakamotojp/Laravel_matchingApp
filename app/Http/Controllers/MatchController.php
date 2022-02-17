@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Swipe;
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\Chat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,23 @@ class MatchController extends Controller
 
     }
 
-    public function showChat(){
+    public function showChat($id){
+
+        $user = User::where('id', $id)->first();
+
         return view('pages.match.chat');
+    }
+
+    public function sendChat(Request $request){
+
+        $toUserId = $request->input('to_user_id');
+
+        Chat::create([
+            'from_user_id' => Auth::user()->id,
+            'to_user_id' => $toUserId,
+            'chat' => $request->input('message'),
+        ]);
+
+        $this->showChat($toUserId);
     }
 }
