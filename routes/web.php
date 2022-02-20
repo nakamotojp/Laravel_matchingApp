@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/matches', [MatchController::class, 'index'])->name('matches.index');
     Route::get('/matchuser/{id}', [MatchController::class, 'showMatchuser'])->name('matches.user');
     Route::get('/chat/{id}', [MatchController::class, 'showChat'])->name('matches.chat');
-    Route::post('/chat', [MatchController::class, 'sendChat']);
+    Route::post('/chat', [MatchController::class, 'sendChat'])->name('chat');
 
 
 });

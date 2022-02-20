@@ -5,17 +5,24 @@
 
 
 
-  $("#sendmessage").on("click", function () {
-    $.ajax({
-        type: 'post',
-        url: '/chat',
-        data: {
-            'to_user_id' : $("#to_user_id").val(),
-            'message' : $("#message").val()
-        }
-    }).done(function(data){
-        console.log('Ajax Success');
-    }).fail(function(msg) {
-        console.log('Ajax Error');
-    });
-  });
+//   $("#sendmessage").on("click", function () {
+//     $.ajaxSetup({
+//         headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         }
+//     });
+//     $.ajax({
+//         type: 'post',
+//         url: '/chat',
+//         dataType: 'json',
+//         data: {
+//             'to_user_id' : $("#to_user_id").val(),
+//             'message' : $("#message").val()
+//         }
+
+//     }).done(function(data){
+//         console.log('Ajax Success');
+//     }).fail(function(msg) {
+//         console.log('Ajax Error');
+//     });
+//   });

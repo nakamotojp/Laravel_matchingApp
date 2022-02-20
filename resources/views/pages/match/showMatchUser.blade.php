@@ -19,10 +19,10 @@
         </div">
         <h5>introduce:</h5>
         <p>{{ $matchedUser->introduce }}</p>
-            <div class="mt-5">
+            {{-- <div class="mt-5">
                 <a class="btn btn-outline-primary" href="{{ route('matches.chat')}}">
                     chat</a>
-            </div>
+            </div> --}}
     @else
     <h2>{{ $user->name }}</h2>
 
@@ -33,10 +33,10 @@
         <div class="col">
             <p>***No self-introduction***</p>
         </div">
-        <div class="mt-5">
+        {{-- <div class="mt-5">
             <a class="btn btn-outline-primary" href="{{ route('matches.index') }}">
                 back</a>
-        </div>
+        </div> --}}
 
 
     @endif
