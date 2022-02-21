@@ -20,7 +20,7 @@
         </p><!-- .message-text -->
       </div>
       @foreach($authChats as $chat)
-      <p>{{ $chat }}</p>
+      <p>{{ $chat['chat'] }}</p>
 @endforeach
       <!-- .message -->
 
@@ -31,9 +31,9 @@
 
             <input type="button" value="send" id="send">
         </form>
-        <button id="send">send</button>
-         <div id="messageTextBox"></div>
-         <button id="test">testclick</button>
+
+
+
 
     </div><!-- .chat -->
 <script
@@ -65,8 +65,30 @@ $(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-        }).done(function(data){
-            console.log('Ajax Success');
+
+        }).done(function (data) {
+            console.log('success');
+            let html = '';
+
+            $.each(data, function (index, value) { //dataの中身からvalueを取り出す
+
+                let id = value.from_user_id;
+                let chat = value.chat;
+// １ユーザー情報のビューテンプレートを作成
+                html = `
+                            <div class="user-list">
+                                <p>${id}</p>
+                                <p>${chat}</p>
+                            </div>
+                                `
+                            });
+            $('.chat').append(html); //できあがったテンプレートをビューに追加
+
+// 検索結果がなかったときの処理
+            if (data.length === 0) {
+                $('.user-index-wrapper').after('<p class="text-center mt-5 search-null">ユーザーが見つかりません</p>');
+            }
+
         }).fail(function(msg) {
             console.log('Ajax Err');
         });

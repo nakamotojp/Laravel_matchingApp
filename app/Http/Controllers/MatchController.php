@@ -59,7 +59,6 @@ class MatchController extends Controller
     public function sendChat(Request $request){
 
         $toUserId = $request->input('to_user_id');
-        $user = User::where('id', $toUserId)->first();
 
         Chat::create([
             'from_user_id' => Auth::user()->id,
@@ -67,14 +66,8 @@ class MatchController extends Controller
             'chat' => $request->input('message'),
         ]);
 
-        $authChats = Chat::where('from_user_id',Auth::user()->id)->where('to_user_id',$toUserId)->get();
-        $userChats = chat::where('to_user_id',Auth::user()->id)->where('from_user_id',$toUserId)->get();
+        $Chats = Chat::whereIn('from_user_id',[$toUserId,Auth::user()->id])->whereIn('to_user_id',[$toUserId,Auth::user()->id])->get();
 
-        // return view('pages.match.chat',compact('authChats','userChats','user'));
-        return response()->json([
-            'authChats' => $authChats,
-            'userChats' => $userChats,
-            'user' => $user
-         ]);
+        return response()->json($Chats);
     }
 }
