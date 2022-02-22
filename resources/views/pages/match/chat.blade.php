@@ -1,41 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+<p style="text-decoration: underline">{{ $user->name }}</p>
+    <div class="chat bg-light p-2" style="overflow: scroll; scroll-behavior: smooth; height:565px;">
 
-    <div class="chat bg-light p-4" style="height:630px;">
-      <div class="message d-flex flex-row align-items-start mb-4">
-        <div class="message-icon rounded-circle bg-secondary text-white fs-3">
-          <i class="fas fa-user"></i>
-        </div><!-- .message-icon -->
-        <p class="message-text p-2 ms-2 mb-0 bg-warning">
-          サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。
-        </p><!-- .message-text -->
-      </div><!-- .message -->
-      <div class="message d-flex flex-row-reverse align-items-start mb-4">
-        <div class="message-icon rounded-circle bg-secondary text-white fs-3">
-          <i class="fas fa-user"></i>
-        </div><!-- .message-icon -->
-        <p class="message-text p-2 me-2 mb-0 bg-info">
-          サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。
-        </p><!-- .message-text -->
-      </div>
-      @foreach($authChats as $chat)
-      <p>{{ $chat['chat'] }}</p>
-@endforeach
-      <!-- .message -->
-
-         <form method="post" action="{{ route('chat') }}">
-            @csrf
-            <input id="to_user_id" name="to_user_id" type="hidden" value="{{ $user->id }}" />
-            <input id="message" name="message" type="text" value="" />
-
-            <input type="button" value="send" id="send">
-        </form>
+        @foreach($chats as $chat)
+            @if ($chat['from_user_id'] == $user->id)
+                <div class="message d-flex flex-row align-items-start mb-4">
+                    <div class="message-icon fs-3">
+                        <img src="{{ $user->img_url }}" title="tphoto" alt="Tinder Photo"
+                        style="width:40px; height:40px; object-fit:cover; border-radius: 50%;"/>
+                    </div>
+                        <p class="message-text p-2 ms-2 mb-0 bg-warning" style="border-radius:24px;">
+                            {{ $chat['chat'] }}
+                        </p>
+                </div>
+            @else
+                <div class="message d-flex flex-row-reverse align-items-start mb-4">
+                        <p class="message-text p-2 me-2 mb-0 bg-info" style="border-radius:24px;">
+                            {{ $chat['chat'] }}
+                        </p>
+                </div>
+            @endif
+        @endforeach
 
 
+    </div>
+    <form method="post" action="{{ route('chat') }}">
+        @csrf
+        <input id="to_user_id" name="to_user_id" type="hidden" value="{{ $user->id }}"/>
+        <input id="message" name="message" type="text" value="" size="37" style="height:33px; font-size:1.1em;"/>
 
-
-    </div><!-- .chat -->
+        <input type="button" value="send" id="send">
+    </form><!-- .chat -->
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -76,14 +73,19 @@ $(function() {
                 let chat = value.chat;
 // １ユーザー情報のビューテンプレートを作成
                 html = `
-                            <div class="user-list">
-                                <p>${id}</p>
-                                <p>${chat}</p>
-                            </div>
+                <div class="message d-flex flex-row-reverse align-items-start mb-4">
+
+                    <!-- .message-icon -->
+                        <p class="message-text p-2 me-2 mb-0 bg-info" style="border-radius:24px;">
+                            ${chat}
+                        </p><!-- .message-text -->
+                </div>
+
                                 `
                             });
-            $('.chat').append(html); //できあがったテンプレートをビューに追加
-
+            $('.chat').append(html);
+            $('.chat').scrollTop( $(".chat")[0].scrollHeight );
+            $("#message").val("");
 // 検索結果がなかったときの処理
             if (data.length === 0) {
                 $('.user-index-wrapper').after('<p class="text-center mt-5 search-null">ユーザーが見つかりません</p>');

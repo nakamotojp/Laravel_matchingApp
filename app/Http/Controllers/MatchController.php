@@ -48,12 +48,11 @@ class MatchController extends Controller
 
     public function showChat($id){
 
-        $user = User::where('id', $id)->first();
+        $chats = Chat::whereIn('from_user_id',[$id,Auth::user()->id])->whereIn('to_user_id',[$id,Auth::user()->id])->get();
 
-        $authChats = Chat::where('from_user_id',Auth::user()->id)->where('to_user_id',$id)->get();
-        $userChats = chat::where('to_user_id',Auth::user()->id)->where('from_user_id',$id)->get();
+        $user = User::where('id',$id)->first();
 
-        return view('pages.match.chat',compact('authChats','userChats','user'));
+        return view('pages.match.chat',compact('chats','user'));
     }
 
     public function sendChat(Request $request){
