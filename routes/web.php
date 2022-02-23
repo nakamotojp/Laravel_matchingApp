@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SwipeController;
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/matchuser/{id}', [MatchController::class, 'showMatchuser'])->name('matches.user');
     Route::get('/chat/{id}', [MatchController::class, 'showChat'])->name('matches.chat');
     Route::post('/chat', [MatchController::class, 'sendChat'])->name('chat');
+
+    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/hold', [EventController::class, 'showHold'])->name('events.hold');
+    Route::post('/events/post', [EventController::class, 'post'])->name('events.post');
 
 
 });

@@ -10,7 +10,7 @@
     @if(!is_null($user))
     <div class="tname"><a href="{{ route('matches.user',$user->id) }}">{{ $user->name }}</a></div>
   <div class="tphoto">
-    <img src="{{ $user->img_url }}" title="tphoto" style="width:400px; height:400px; object-fit:cover;" alt="Tinder Photo" />
+    <img src="{{ $user->img_url }}" title="tphoto" style="z-index:99; width:400px; height:400px; object-fit:cover;" alt="Tinder Photo" />
 
   </div>
 

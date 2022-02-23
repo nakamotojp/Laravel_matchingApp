@@ -26,8 +26,7 @@
 
             <div class="form-group">
                 <label for="content">introduce</label>
-                <textarea type="text" id="introduce" name="introduce" class="form-control" rows="13" value="{{ old('introduce') }}">
-                </textarea>
+                <textarea type="text" id="introduce" name="introduce" class="form-control" rows="13" value="{{ old('introduce') }}"></textarea>
                 @if ($errors->has('introduce'))
                     <div class="text-danger">{{ $errors->first('introduce') }}</div>
                 @endif
