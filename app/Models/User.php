@@ -24,6 +24,11 @@ class User extends Authenticatable
         'img_url',
     ];
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

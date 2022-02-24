@@ -17575,7 +17575,7 @@ readers do not read off random characters that represent icons */
 .modal-container{
 	position: fixed;
 	top: 0;
-    left:36%;
+    left:39.5%;
 
 	width: 400px;
 	height: 720px;
@@ -17706,4 +17706,9 @@ readers do not read off random characters that represent icons */
     border: 1px solid #cccccc;
     -ms-word-break: normal;
     word-break: normal;
+  }
+
+  #eventform{
+      margin-bottom: 18px;
+
   }

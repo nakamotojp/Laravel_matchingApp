@@ -5,16 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Event extends Model
 {
     use HasFactory;
 
     protected $table = 'profile';
 
     protected $fillable = [
-        'user_id',
-        'age',
-        'income',
+        'hold_user_id',
+        'name',
+        'title',
+        'address',
+        'datetime',
+        'hour',
+        'number',
+        'type',
+        'img_url',
         'introduce',
     ];
 

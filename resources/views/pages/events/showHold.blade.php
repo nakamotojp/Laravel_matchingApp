@@ -1,34 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
+<div class="row" style="height:600px; overflow: scroll;">
         <p style="text-decoration: underline">hold event!</p>
         <form enctype="multipart/form-data" method="POST" action="{{ route('events.post') }}">
           @csrf
 
-            <div class="form-group">
+            <div class="form-group" id="eventform" style="margin-top:10px;">
                 <label for="age">event name</label>
                 <input id="title" name="name" class="form-control" value="{{ old('name') }}" type="text">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="eventform">
                 <label for="title">title</label>
                 <input id="title" name="title" class="form-control" value="" type="text">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="eventform">
                 <label for="title">address</label>
                 <input id="title" name="address" class="form-control" value="{{ old('address') }}" type="text">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="eventform">
                 <label for="age">photo</label>
                 <input id="image" type="file" class="form-control">
             </div>
 
-            <div class="selectdiv" style="margin-right:20px;">
+            <p>date</p>
+            <div class="form-group" name="datetime" id="eventform">
+                <input type="datetime-local">
+            </div>
+
+            <div class="form-group" id="eventform">
+                <label for="title">time required</label>
+                <input id="title" name="hour" class="form-control" value="{{ old('address') }}" type="text">
+            </div>
+
+
+            <div class="selectdiv" id="eventform" style="margin-right:20px;">
                 <label>
-                    <select>
+                    <select name="number">
                         <option selected>number of people</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -44,9 +55,9 @@
                 </label>
             </div>
 
-            <div class="selectdiv">
+            <div class="selectdiv" style="margin-bottom: 24px;">
                 <label>
-                    <select>
+                    <select name="type">
                         <option selected>event type</option>
                         <option value="1">date</option>
                         <option value="2">go out drinking</option>
@@ -62,12 +73,13 @@
                 </label>
             </div>
 
-            <div class="form-group">
+
+            <div class="form-group" id="eventform">
                 <label for="content">content</label>
                 <textarea type="text" name="content" class="form-control" rows="8" value="{{ old('content') }}"></textarea>
             </div>
 
-            <div class="mt-3">
+            <div class="mt-3" style="float: right">
                 <button type="submit" class="btn btn-outline-primary" style="margin-right:0px;">post</button>
             </div>
 
