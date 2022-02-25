@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -21,17 +22,20 @@ class EventController extends Controller
 
     public function post(Request $request)
     {
-        // dd($request);
+        $fileName = $request->file('image')->getClientOriginalName();
+        Storage::putFileAs('public/images', $request->file('image'), $fileName);
+        $fullFilePath = '/storage/images/'.$fileName;
+
         Event::create([
             'hold_user_id' => Auth::user()->id,
             'name' => $request->input('name'),
             'title' => $request->input('title'),
             'address' => $request->input('address'),
-            // 'datetime' => $request->input('datetime'),
+            'datetime' => $request->input('datetime'),
             'hour' => $request->input('hour'),
             'number' => $request->input('number'),
             'type' => $request->input('type'),
-            // 'img_url' => $request->input(''),
+            'img_url' => $fullFilePath,
             'introduce' => $request->input('content'),
         ]);
 
