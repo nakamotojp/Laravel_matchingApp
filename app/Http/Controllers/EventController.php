@@ -40,8 +40,21 @@ class EventController extends Controller
         ]);
 
 
-        return redirect(url('/events'))->with('flash_message', 'holding successful！');
+        return redirect(url('/events/list'))->with('flash_message', 'holding successful！');
 
+    }
+
+    public function list()
+    {
+        $lists = Event::orderBy('created_at', 'desc')->get();
+        return view('pages.events.list',compact('lists'));
+    }
+
+    public function showDetail($id)
+    {
+        $event = Event::where('id',$id)->first();
+
+        return view('pages.events.detail',compact('event'));
     }
 
 }

@@ -43,6 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/hold', [EventController::class, 'showHold'])->name('events.hold');
     Route::post('/events/post', [EventController::class, 'post'])->name('events.post');
+    Route::get('/events/list', [EventController::class, 'list'])->name('events.list');
+    Route::get('/events/list/{id}', [EventController::class, 'showDetail'])->name('events.detail');
+
 
 
 });

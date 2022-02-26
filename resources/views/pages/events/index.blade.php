@@ -5,13 +5,16 @@
     <div class="events row">
 
         <div class="choice border">
+            <a href="{{ route('events.list') }}">recent posts</a>
+        </div>
+        <div class="choice border">
             <a href="">search</a>
         </div>
         <div class="choice border">
             <a href="">popular</a>
         </div>
         <div class="choice border">
-            <a href="{{ route('events.hold')}}">hold</a>
+            <a href="{{ route('events.hold')}}">Let's hold</a>
         </div>
         <div class="choice border">
             <a href="">reserved</a>
@@ -20,7 +23,7 @@
             <a href="">liked</a>
         </div>
         <div class="choice border">
-            <a href="">Let's hold</a>
+            <a href="">attended</a>
         </div>
 
     </div>

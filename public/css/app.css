@@ -17411,7 +17411,7 @@ readers do not read off random characters that represent icons */
 }
 
 .tbg {
-  height: 720px;
+  height: 730px;
   width: 400px;
   background-color: #fff;
   margin: 0 auto;
@@ -17575,7 +17575,7 @@ readers do not read off random characters that represent icons */
 .modal-container{
 	position: fixed;
 	top: 0;
-    left:39.5%;
+    left:36%;
 
 	width: 400px;
 	height: 720px;
@@ -17641,13 +17641,15 @@ readers do not read off random characters that represent icons */
     height:610px;
     overflow: scroll;
     scroll-behavior: smooth;
-
+    padding-bottom: 20px;
 }
 
 .choice {
     width:185px;
     height:185px;
     margin-left:10px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 4px gray;
 }
 
 .selectdiv {
@@ -17710,5 +17712,50 @@ readers do not read off random characters that represent icons */
 
   #eventform{
       margin-bottom: 18px;
+
+  }
+
+  .flash_message{
+    width:398px;
+    height:50px;
+    position:absolute;
+    top:66px;
+    padding-top: 13px;
+    background-color: #66CCFF;
+  }
+
+  .flash_message p{
+      font-size: 20px;
+      font-weight:500;
+      color:#FFFFF0;
+      text-decoration: underline;
+  }
+
+  .events {
+    padding: 3px;
+  }
+
+  .eventList{
+      margin: 0px 7px 10px 3px;
+      width:385px;
+      box-shadow: 3px 3px 5px gray;
+
+  }
+
+  .eventimg {
+    margin-top: 10px;
+    margin-bottom:10px;
+    margin-right:20px;
+  }
+
+  .eventList img {
+    height:90px;
+    width:90px;
+    object-fit:cover;
+  }
+
+ .eventinfo {
+    margin-top: 10px;
+    margin-bottom:10px;
 
   }

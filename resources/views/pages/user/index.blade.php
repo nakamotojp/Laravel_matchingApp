@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<p style="text-decoration: underline">Let's match!</p>
 <div class="p-user-index">
+
 
     @if(is_null($user))
     <p class="text-center">＊＊have no one to introduce to you＊＊</p>

@@ -142,8 +142,8 @@
             </div>
 
             @if (session('flash_message'))
-                <div class="flash_message bg-info text-center py-3 my-0">
-                    {{ session('flash_message') }}
+                <div class="flash_message text-center">
+                    <p><i class="fas fa-check"></i>  {{ session('flash_message') }}</p>
                 </div>
             @endif
 
