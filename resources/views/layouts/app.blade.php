@@ -41,8 +41,8 @@
                                     </li>
                                 @else
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('matches.index')}}">
-                                            <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                                        <a class="nav-link" onClick="history.back()">
+                                            <i class="far fa-arrow-alt-circle-left fa-2x" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                 @endguest

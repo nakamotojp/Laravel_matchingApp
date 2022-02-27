@@ -17759,3 +17759,10 @@ readers do not read off random characters that represent icons */
     margin-bottom:10px;
 
   }
+
+  .google-map {
+    width: 300px;
+    height: 200px;
+    margin-bottom: 10px;
+    background-color: #b6effb;
+  }

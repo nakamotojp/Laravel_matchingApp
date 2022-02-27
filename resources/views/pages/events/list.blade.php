@@ -6,11 +6,13 @@
 
         @foreach ($lists as $list)
             <div class="eventList d-flex">
+
                 <div class="eventimg">
+                    <p style="margin-bottom: 0px;"><i class="far fa-heart"></i>  count</p>
                 <img src="{{ $list->img_url }}">
                 </div>
                 <div class="eventinfo">
-                    <p style="font-size:15px;"><i class="far fa-heart"></i>  {{ $list->name }}</p>
+                    <p style="font-size:15px;">{{ $list->name }}</p>
                     <div style="width:230px;text-align: center;">
                         <p style="font-size:11px;">{{ $list->title }}</p>
                     </div>

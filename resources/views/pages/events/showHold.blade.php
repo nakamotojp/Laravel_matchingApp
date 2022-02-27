@@ -26,13 +26,13 @@
                 <input id="image" type="file" name="image" class="form-control" required autocomplete="image" autofocus>
             </div>
 
-            <p>date & start time.</p>
+            <p>date</p>
             <div class="form-group" id="eventform">
-                <input name="datetime" type="datetime-local">
+                <input name="datetime" type="date">
             </div>
 
             <div class="form-group" id="eventform">
-                <label for="title">about time required etc.</label>
+                <label for="title">please enter the time etc</label>
                 <input id="title" name="hour" class="form-control" value="{{ old('hour') }}" type="text">
             </div>
 
