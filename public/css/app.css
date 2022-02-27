@@ -17411,7 +17411,7 @@ readers do not read off random characters that represent icons */
 }
 
 .tbg {
-  height: 730px;
+  height: 720px;
   width: 400px;
   background-color: #fff;
   margin: 0 auto;
@@ -17732,6 +17732,7 @@ readers do not read off random characters that represent icons */
   }
 
   .events {
+      height: 600px;
     padding: 3px;
   }
 

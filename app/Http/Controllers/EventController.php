@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Userevent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,6 +56,14 @@ class EventController extends Controller
         $event = Event::where('id',$id)->first();
 
         return view('pages.events.detail',compact('event'));
+    }
+
+    public function showLiked(){
+        return view('pages.events.list');
+    }
+
+    public function showReserved(){
+        return view('pages.events.list');
     }
 
 }

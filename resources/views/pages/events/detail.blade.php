@@ -37,33 +37,36 @@
     </div>
 </div>
 <script>
-function initMap() {
+    function initMap() {
 
- var target = document.getElementById('map'); //マップを表示する要素を指定
- var address = '{{$event->address}}';
- var geocoder = new google.maps.Geocoder();
+var target = document.getElementById('map'); //マップを表示する要素を指定
+var address = '{{$event->address}}';
+var geocoder = new google.maps.Geocoder();
 
- geocoder.geocode({ address: address }, function(results, status){
-   if (status === 'OK' && results[0]){
+geocoder.geocode({ address: address }, function(results, status){
+  if (status === 'OK' && results[0]){
 
-     console.log(results[0].geometry.location);
+    console.log(results[0].geometry.location);
 
-      var map = new google.maps.Map(target, {
-        center: results[0].geometry.location,
-        zoom: 13
-      });
+     var map = new google.maps.Map(target, {
+       center: results[0].geometry.location,
+       zoom: 13
+     });
 
-      var marker = new google.maps.Marker({
-        position: results[0].geometry.location,
-        map: map,
-        animation: google.maps.Animation.DROP
-      });
+     var marker = new google.maps.Marker({
+       position: results[0].geometry.location,
+       map: map,
+       animation: google.maps.Animation.DROP
+     });
 
-   }
- });
+  }
+});
 }
+
 </script>
+
 <script async
-    src="https://maps.googleapis.com/maps/api/js?language=en&key=AIzaSyASJ1dvPGSp-_opvrXNZLNKBmpZiC6bswo&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?language=en&key=AIzaSyASJ1dvPGSp-_opvrXNZLNKBmpZiC6bswo&callback=initMap">
 </script>
+
 @endsection
