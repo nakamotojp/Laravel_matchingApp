@@ -98,18 +98,11 @@ class RegisterController extends Controller
 
         $data = $request->all();
 
-        User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'img_url' => $fullFilePath,
-        ]);
-
-        return Userevent::create([
-            'user_id' => Auth::user()->id,
-            'like' => 0,
-            'reserve' => 0,
-
         ]);
     }
 }

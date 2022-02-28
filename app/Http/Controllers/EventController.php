@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
-use App\Models\Userevent;
+use App\Models\Liked;
+use App\Models\Reserved;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -58,12 +59,31 @@ class EventController extends Controller
         return view('pages.events.detail',compact('event'));
     }
 
-    public function showLiked(){
-        return view('pages.events.list');
+    public function reserved(){
+
+        $ids = Reserved::where('user_id',Auth::user()->id)->where('reserve',true)->pluck('event_id');
+
+        $reserved = [];
+
+        for($i=0; $i<count($ids); $i++){
+            $reserved[] = Event::find($ids[$i]);
+        }
+
+        return view('pages.events.reserved', compact('reserved'));
     }
 
-    public function showReserved(){
-        return view('pages.events.list');
+    public function liked(){
+
+        $ids = Liked::where('user_id',Auth::user()->id)->where('like',true)->pluck('event_id');
+
+        $liked = [];
+
+        for($i=0; $i<count($ids); $i++){
+            $liked[] = Event::find($ids[$i]);
+        }
+
+        return view('pages.events.liked', compact('liked'));
     }
+
 
 }

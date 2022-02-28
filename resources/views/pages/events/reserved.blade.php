@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(isset($resrved))
 <p style="text-decoration: underline">event lists</p>
     <div class="events row">
-
-        @foreach ($lists as $list)
-            <div class="eventList d-flex" style="width:385px;">
+        @foreach ($reserved as $list)
+            <div class="eventList d-flex">
 
                 <div class="eventimg">
                     <p style="margin-bottom: 0px;"><i class="far fa-heart"></i>  count</p>
@@ -25,5 +26,9 @@
         @endforeach
 
     </div>
-
+@else
+<div class="d-flex align-items-center justify-content-center" style="height:500px;">
+    <p class="text-center">there is no data</p>
+  </div>
+@endif
 @endsection
