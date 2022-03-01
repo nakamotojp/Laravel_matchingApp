@@ -22,10 +22,20 @@ class Event extends Model
         'introduce',
     ];
 
-    public function toUser()
+    public function User()
     {
-        return $this->belongsTo('\App\Models\User', 'to_user_id', 'id');
+        return $this->belongsTo('\App\Models\User');
 
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Like');
+    }
+
+    public function reserves()
+    {
+        return $this->hasMany('App\Models\Reserved');
     }
 
 }

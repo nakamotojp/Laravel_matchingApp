@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/events/list/{id}', [EventController::class, 'showDetail'])->name('events.detail');
     Route::get('/events/reserved', [EventController::class, 'reserved'])->name('events.reserved');
     Route::get('/events/liked', [EventController::class, 'liked'])->name('events.liked');
+    Route::post('/events/like', [EventController::class, 'like'])->name('events.like');
 
 
 

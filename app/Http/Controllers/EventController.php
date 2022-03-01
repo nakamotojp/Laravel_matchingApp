@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
-use App\Models\Liked;
+use App\Models\Like;
 use App\Models\Reserved;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
@@ -54,7 +55,7 @@ class EventController extends Controller
 
     public function showDetail($id)
     {
-        $event = Event::where('id',$id)->first();
+        $event = Event::withCount('likes')->withCount('reserves')->where('id',$id)->first();
 
         return view('pages.events.detail',compact('event'));
     }
@@ -74,7 +75,7 @@ class EventController extends Controller
 
     public function liked(){
 
-        $ids = Liked::where('user_id',Auth::user()->id)->where('like',true)->pluck('event_id');
+        $ids = Like::where('user_id',Auth::user()->id)->where('like',true)->pluck('event_id');
 
         $liked = [];
 
@@ -83,6 +84,47 @@ class EventController extends Controller
         }
 
         return view('pages.events.liked', compact('liked'));
+    }
+
+
+    public function like (Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $event_id = $request->event_id;
+
+        $boolean = Like::where('user_id', $user_id)->where('event_id',$event_id)->exists();
+
+        if($boolean){
+
+            DB::table('likes')->where('user_id', $user_id)->where('event_id',$event_id)->delete();
+
+            $count = Like::where('event_id',$event_id)->count();
+
+            $data = [
+                'count' => $count,
+                'addcolor' => true
+            ];
+
+            return response()->json($data);
+
+        }else{
+
+            Like::create([
+                'user_id' => $user_id,
+                'event_id' => $event_id
+            ]);
+
+            $count = Like::where('event_id',$event_id)->count();
+
+            $data = [
+                'count' => $count,
+                'addcolor' => false
+            ];
+
+            return response()->json($data);
+        }
+
+
     }
 
 

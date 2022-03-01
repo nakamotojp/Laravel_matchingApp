@@ -8,7 +8,11 @@
             <div class="eventList d-flex" style="width:385px;">
 
                 <div class="eventimg">
-                    <p style="margin-bottom: 0px;"><i class="far fa-heart"></i>  count</p>
+                    @if($list->likes()->exists())
+                    <p style="margin-bottom: 0px; color:rgb(70, 156, 226);"><i class="fas fa-heart"></i>  {{ $list->likes()->count()}}</p>
+                    @else
+                    <p style="margin-bottom: 0px;"><i class="far fa-heart"></i>  no like</p>
+                    @endif
                 <img src="{{ $list->img_url }}">
                 </div>
                 <div class="eventinfo">
