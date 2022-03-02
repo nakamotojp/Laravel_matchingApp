@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Like;
-use App\Models\Reserved;
+use App\Models\Reserve;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -22,6 +23,7 @@ class EventController extends Controller
     {
         return view('pages.events.showHold');
     }
+
 
     public function post(Request $request)
     {
@@ -42,10 +44,10 @@ class EventController extends Controller
             'introduce' => $request->input('content'),
         ]);
 
-
         return redirect(url('/events/list'))->with('flash_message', 'holding successful！');
 
     }
+
 
     public function list()
     {
@@ -60,9 +62,10 @@ class EventController extends Controller
         return view('pages.events.detail',compact('event'));
     }
 
+
     public function reserved(){
 
-        $ids = Reserved::where('user_id',Auth::user()->id)->where('reserve',true)->pluck('event_id');
+        $ids = Reserve::where('user_id',Auth::user()->id)->pluck('event_id');
 
         $reserved = [];
 
@@ -72,6 +75,43 @@ class EventController extends Controller
 
         return view('pages.events.reserved', compact('reserved'));
     }
+
+    public function apply($id)
+    {
+        $user = Event::find($id)->user()->first();
+
+        Reserve::create([
+            'user_id' => $user->id,
+            'event_id' => $id,
+            'step' => '1'
+        ]);
+
+        return redirect(url('/events'))->with('flash_message', 'applied to '.$user->name.'!');
+
+    }
+
+    public function withdraw($id)
+    {
+        $user = Event::find($id)->user()->first();
+
+        DB::table('reserves')->where('user_id',Auth::user()->id)->where('event_id',$id)->delete();
+
+        return redirect(url('/events'))->with('flash_message', 'withdraw application!');
+
+    }
+
+    public function decline($id)
+    {
+        $user = Event::find($id)->user()->first();
+
+        DB::table('reserves')->where('user_id',Auth::user()->id)->where('event_id',$id)->delete();
+
+        return redirect(url('/events'))->with('flash_message', 'decline participation!');
+
+    }
+
+
+
 
     public function liked(){
 
@@ -101,8 +141,7 @@ class EventController extends Controller
             $count = Like::where('event_id',$event_id)->count();
 
             $data = [
-                'count' => $count,
-                'addcolor' => false
+                'count' => $count
             ];
 
             return response()->json($data);
@@ -117,15 +156,10 @@ class EventController extends Controller
             $count = Like::where('event_id',$event_id)->count();
 
             $data = [
-                'count' => $count,
-                'addcolor' => true
+                'count' => $count
             ];
 
             return response()->json($data);
         }
-
-
     }
-
-
 }

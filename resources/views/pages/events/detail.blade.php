@@ -39,7 +39,13 @@
             <p style="margin-bottom: 0%; text-decoration: underline;">introduce</p>
             <p style="margin-top: 10px; border-bottom: thick double #32a1ce;">{{ $event->introduce }}</p>
                 <div class="mt-5" style="float: right">
-                    <a class="btn btn-outline-primary" href="">Apply</a>
+                    @if($event->reserveJudge($event->id) === '0')
+                        <a class="btn btn-outline-primary" href="{{ route('events.apply',$event->id) }}">Apply</a>
+                    @elseif($event->reserveJudge($event->id) === '1')
+                        <a class="btn btn-outline-primary" href="{{ route('events.withdraw',$event->id) }}">Withdraw application</a>
+                    @else
+                        <a class="btn btn-outline-primary" href="{{ route('events.decline',$event->id) }}">Decline participation</a>
+                    @endif
                 </div>
     </div>
 </div>

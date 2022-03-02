@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Event extends Model
 {
@@ -22,20 +23,33 @@ class Event extends Model
         'introduce',
     ];
 
-    public function User()
+    public function user()
     {
-        return $this->belongsTo('\App\Models\User');
+        return $this->belongsTo(User::class);
 
     }
 
     public function likes()
     {
-        return $this->hasMany('App\Models\Like');
+        return $this->hasMany(Like::class);
     }
 
     public function reserves()
     {
-        return $this->hasMany('App\Models\Reserved');
+        return $this->hasMany(Reserve::class);
+    }
+
+    public function reserveJudge($id)
+    {
+        $judge = Reserve::where('user_id',Auth::user()->id)->where('event_id',$id)->exists();
+
+        if($judge){
+            $step = Reserve::where('user_id',Auth::user()->id)->where('event_id',$id)->first(['step']);
+            return $step;
+        }else{
+            $step = '0';
+            return $step;
+        }
     }
 
 }
