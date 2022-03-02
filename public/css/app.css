@@ -17572,6 +17572,7 @@ readers do not read off random characters that represent icons */
   font-family: "Helvetica", sans-serif;
   font-style: italic;
 }
+
 .modal-container{
 	position: fixed;
 	top: 0;
@@ -17770,4 +17771,12 @@ readers do not read off random characters that represent icons */
     height: 200px;
     margin-bottom: 10px;
     background-color: #b6effb;
+  }
+
+  #like {
+    color:rgb(70, 156, 226);
+  }
+
+  .likesCount {
+      font-size: 7px;
   }

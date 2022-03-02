@@ -75,7 +75,7 @@ class EventController extends Controller
 
     public function liked(){
 
-        $ids = Like::where('user_id',Auth::user()->id)->where('like',true)->pluck('event_id');
+        $ids = Like::where('user_id',Auth::user()->id)->pluck('event_id');
 
         $liked = [];
 
@@ -102,7 +102,7 @@ class EventController extends Controller
 
             $data = [
                 'count' => $count,
-                'addcolor' => true
+                'addcolor' => false
             ];
 
             return response()->json($data);
@@ -118,7 +118,7 @@ class EventController extends Controller
 
             $data = [
                 'count' => $count,
-                'addcolor' => false
+                'addcolor' => true
             ];
 
             return response()->json($data);

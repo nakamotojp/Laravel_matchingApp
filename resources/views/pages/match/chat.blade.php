@@ -35,6 +35,6 @@
     </form><!-- .chat -->
 
 
-  </script>
+
 
 @endsection

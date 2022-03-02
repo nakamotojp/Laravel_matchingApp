@@ -28,14 +28,4 @@ class Like extends Model
     {
         return $this->belongsTo(Event::class);
     }
-
-    //いいねが既にされているかを確認
-    public function like_exist($id, $event_id)
-    {
-//Likesテーブルのレコードにユーザーidと投稿idが一致するものを取得
-        $count = Like::where('user_id', '=', $id)->where('post_id', '=', $event_id)->count();
-
-        // レコード（$exist）が存在するなら
-        return $count;
-    }
 }
