@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Like;
+use App\Models\Notice;
 use App\Models\Reserve;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -84,15 +85,28 @@ class EventController extends Controller
 
     public function apply($id)
     {
-        $user = Event::find($id)->user()->first();
+        $from_user = Event::find($id)->user()->first();
+        $user_id = Auth::user()->id;
+
+        $message = config('message.notice_message');
+        $content = config('message.notice_content');
 
         Reserve::create([
-            'user_id' => $user->id,
+            'user_id' => $user_id,
             'event_id' => $id,
-            'step' => '1'
+            'step' => '1',
         ]);
 
-        return redirect(url('/events/detail',$id))->with('flash_message', 'applied to '.$user->name.'!');
+        Notice::create([
+            'from_user_id' => $from_user->id,
+            'to_user_id' => $user_id,
+            'message' => $message,
+            'content' => $content,
+            'check' => 0,
+            'event_id' => $id,
+        ]);
+
+        return redirect(url('/events/detail',$id))->with('flash_message', 'applied to '.$from_user->name.'!');
 
     }
 

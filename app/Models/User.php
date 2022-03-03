@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function notices()
+    {
+        return $this->hasMany(Notice::class);
+    }
+
 
 
     /**

@@ -16,6 +16,7 @@ class Swipe extends Model
 
     ];
 
+    // 外部キーが複数あるから引数で指定している
     public function toUser()
     {
         return $this->belongsTo('\App\Models\User', 'to_user_id', 'id');

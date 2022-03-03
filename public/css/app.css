@@ -17780,3 +17780,37 @@ readers do not read off random characters that represent icons */
   .likesCount {
       font-size: 7px;
   }
+
+  .notices {
+    height: 600px;
+  padding: 3px;
+  overflow: scroll;
+    scroll-behavior: smooth;
+}
+
+.noticeList{
+
+    box-shadow: 3px 3px 5px gray;
+    height:83px;
+    width:375px;
+
+}
+
+.noticeicon{
+width:70px;
+height:70px;
+}
+
+.noticeicon i{
+    text-align:center;
+}
+
+.noticemessage {
+    width:260px;
+    height:70px;
+}
+
+.noticeopen {
+    width:4px;
+    height:70px;
+}

@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-@if(isset($liked))
+@if(!empty($liked))
 <p style="text-decoration: underline">liked lists</p>
     <div class="events" style="padding-left: 0px">
         @foreach ($liked as $list)
-            <div class="eventList d-flex" style="width:375px;">
+            <div class="eventList d-flex" style="width:370px;">
 
                 <div class="eventimg">
-                    @if($list->likes()->exists())
+                    @if($list->likeJudge($list->id) == 1)
                     <p style="margin-bottom: 0px; color:rgb(70, 156, 226);"><i class="fas fa-heart"></i>  {{ $list->likes()->count()}}</p>
+                    @elseif($list->likeJudge($list->id) == 2)
+                    <p style="margin-bottom: 0px; color:rgb(70, 156, 226);"><i class="far fa-heart"></i>  {{ $list->likes()->count()}}</p>
                     @else
                     <p style="margin-bottom: 0px;"><i class="far fa-heart"></i>  no like</p>
                     @endif

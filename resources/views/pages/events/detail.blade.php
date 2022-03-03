@@ -8,7 +8,7 @@
     <div class="col-md-10 col-md-offset-2 mx-auto" style="overflow: scroll;
     scroll-behavior: smooth; height:600px">
 
-    @if($event->likes()->where('event_id',$event->id)->exists())
+    @if($event->likeDetail($event->id))
     <div id="like" data-event_id={{ $event->id }}><i class="fas fa-heart fa-2x">&ensp;</i><span class="likesCount">{{ $event->likes_count }}</span></div>
     @else
     <div id="like" data-event_id={{ $event->id }}><i class="far fa-heart fa-2x">&ensp;</i><span class="likesCount">{{ $event->likes_count }}</span></div>
@@ -42,9 +42,9 @@
                     @if(Auth::user()->id == $event->user_id)
                         <a class="btn btn-outline-primary" href="{{ route('events.delete',$event->id) }}">Delete</a>
                     @else
-                        @if($event->reserveJudge($event->id) === '0')
+                        @if($event->reserveJudge($event->id) == 0)
                             <a class="btn btn-outline-primary" href="{{ route('events.apply',$event->id) }}">Apply</a>
-                        @elseif($event->reserveJudge($event->id) === '1')
+                        @elseif($event->reserveJudge($event->id) == 1)
                             <a class="btn btn-outline-primary" href="{{ route('events.withdraw',$event->id) }}">Withdraw application</a>
                         @else<h1>{{$event->reserveJudge($event->id) }}</h1>
                             <a class="btn btn-outline-primary" href="{{ route('events.decline',$event->id) }}">Decline participation</a>
@@ -55,36 +55,35 @@
 </div>
 
 <script>
-$(function() {
+// $(function() {
 
-$go = $('#like');
+// $go = $('#like');
 
-$go.on('click', function () {
+// $go.on('click', function () {
 
-event_id = $(this).data("event_id");
+// event_id = $go.data("event_id");
 
-$.ajax({
-        type: 'post',
-        url: '/events/like',
-        dataType: 'json',
-        data: {
-            'event_id' : event_id
-        },
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-     }).done(function (data){
+// $.ajax({
+//         type: 'post',
+//         url: '/events/like',
+//         dataType: 'json',
+//         data: {
+//             'event_id' : event_id
+//         },
+//         headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+//      }).done(function (data){
+// console.log(data.count);
+//                 $go.children('i').toggleClass("far");
+//                 $go.children('i').toggleClass("fas");
+//                 $go.children('span').text(data.count);
 
-                $go.children('i').toggleClass("far");
-                $go.children('i').toggleClass("fas");
-                $go.children('span').text(data.count);
-
-    }).fail(function (data){
-            console.log('fail');
-    });
-});
-});
-
+//     }).fail(function (data){
+//             console.log('fail');
+//     });
+// });
+// });
 function initMap() {
 
         var target = document.getElementById('map');

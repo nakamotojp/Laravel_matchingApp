@@ -32,7 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/postProfile', [UserController::class, 'storeProfile'])->name('users.storeProfile');
     Route::get('/editProfile', [UserController::class, 'showEditProfile'])->name('users.editProfile');
     Route::post('/editProfile', [UserController::class, 'updateEditProfile'])->name('users.updateProfile');
-    Route::get('/events/notice', [UserController::class, 'notice'])->name('users.notice');
+    Route::get('/notice', [UserController::class, 'notice'])->name('users.notice');
+    Route::get('/notice/detail/{id}', [UserController::class, 'detailNotice'])->name('users.noticeDetail');
+    Route::get('/notice/yes/{id}', [UserController::class, 'yesEvent'])->name('yesEvent');
+    Route::get('/notice/no/{id}', [UserController::class, 'noEvent'])->name('noEvent');
 
     Route::post('/swipes', [SwipeController::class, 'store'])->name('swipes.store');
 

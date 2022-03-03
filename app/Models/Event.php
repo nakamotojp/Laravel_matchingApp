@@ -34,6 +34,31 @@ class Event extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function likeDetail($id)
+    {
+        $exists = Like::where('event_id',$id)->where('user_id',Auth::user()->id)->exists();
+        return $exists;
+    }
+
+    public function likeJudge($id)
+    {
+        $judge = Like::where('event_id',$id)->exists();
+
+        if($judge){
+
+            $authJudge = Like::where('event_id',$id)->where('user_id',Auth::user()->id)->exists();
+
+            if($authJudge){
+                return 1;
+            }else{
+                return 2;
+            }
+        }else{
+
+            return 3;
+        }
+    }
+
     public function reserves()
     {
         return $this->hasMany(Reserve::class);
@@ -50,9 +75,11 @@ class Event extends Model
 
         }else{
 
-            $step = '0';
+            $step = 0;
             return $step;
         }
     }
+    
+
 
 }

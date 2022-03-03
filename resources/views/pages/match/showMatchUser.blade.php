@@ -10,13 +10,13 @@
         <div class="col">
             <img src="{{ $user->img_url }}"
             style="height:300px; width:300px; objected-fit:cover; margin-right:15px;">
-        </div">
+        </div>
         <div class="col">
             <p>age:  {{ $matchedUser->age }}</p>
-        </div">
+        </div>
         <div class="col">
             <p>$income/year:  {{ $matchedUser->income }}</p>
-        </div">
+        </div>
         <h5>introduce:</h5>
         <p>{{ $matchedUser->introduce }}</p>
             {{-- <div class="mt-5">
@@ -29,10 +29,10 @@
         <div class="col">
             <img src="{{ $user->img_url }}"
             style="height:300px; width:300px; objected-fit:cover; margin-right:15px;">
-        </div">
+        </div>
         <div class="col">
             <p>***No self-introduction***</p>
-        </div">
+        </div>
         {{-- <div class="mt-5">
             <a class="btn btn-outline-primary" href="{{ route('matches.index') }}">
                 back</a>
