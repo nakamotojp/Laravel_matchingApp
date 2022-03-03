@@ -67,5 +67,10 @@ class UserController extends Controller
         return redirect(url('/profile'))->with('flash_message', 'updating successful！');
 
     }
+
+    public function notice()
+    {
+        return view('pages.user.notice');
+    }
 }
 

@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/postProfile', [UserController::class, 'storeProfile'])->name('users.storeProfile');
     Route::get('/editProfile', [UserController::class, 'showEditProfile'])->name('users.editProfile');
     Route::post('/editProfile', [UserController::class, 'updateEditProfile'])->name('users.updateProfile');
+    Route::get('/events/notice', [UserController::class, 'notice'])->name('users.notice');
 
     Route::post('/swipes', [SwipeController::class, 'store'])->name('swipes.store');
 
@@ -43,8 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/hold', [EventController::class, 'showHold'])->name('events.hold');
     Route::post('/events/post', [EventController::class, 'post'])->name('events.post');
+    Route::get('/events/delete/{id}', [EventController::class, 'delete'])->name('events.delete');
     Route::get('/events/list', [EventController::class, 'list'])->name('events.list');
-    Route::get('/events/list/{id}', [EventController::class, 'showDetail'])->name('events.detail');
+    Route::get('/events/detail/{id}', [EventController::class, 'showDetail'])->name('events.detail');
     Route::get('/events/reserved', [EventController::class, 'reserved'])->name('events.reserved');
     Route::get('/events/withdraw/{id}', [EventController::class, 'withdraw'])->name('events.withdraw');
     Route::get('/events/decline/{id}', [EventController::class, 'decline'])->name('events.decline');

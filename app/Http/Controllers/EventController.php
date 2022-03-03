@@ -48,6 +48,12 @@ class EventController extends Controller
 
     }
 
+    public function delete($id)
+    {
+        DB::table('events')->where('id',$id)->delete();
+        return redirect(url('/events'))->with('flash_message', 'deleting successful！');
+    }
+
 
     public function list()
     {
@@ -86,7 +92,7 @@ class EventController extends Controller
             'step' => '1'
         ]);
 
-        return redirect(url('/events'))->with('flash_message', 'applied to '.$user->name.'!');
+        return redirect(url('/events/detail',$id))->with('flash_message', 'applied to '.$user->name.'!');
 
     }
 
@@ -96,7 +102,7 @@ class EventController extends Controller
 
         DB::table('reserves')->where('user_id',Auth::user()->id)->where('event_id',$id)->delete();
 
-        return redirect(url('/events'))->with('flash_message', 'withdraw application!');
+        return redirect(url('/events/detail',$id))->with('flash_message', 'withdraw application!');
 
     }
 
@@ -106,7 +112,7 @@ class EventController extends Controller
 
         DB::table('reserves')->where('user_id',Auth::user()->id)->where('event_id',$id)->delete();
 
-        return redirect(url('/events'))->with('flash_message', 'decline participation!');
+        return redirect(url('/events/detail',$id))->with('flash_message', 'decline participation!');
 
     }
 

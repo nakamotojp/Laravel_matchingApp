@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -13,16 +12,12 @@
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
 
-
     <script src="{{ asset('/js/chat.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
 </head>
@@ -86,11 +81,15 @@
 
                                         <a class="nav-link" href="" style="text-decoration: underline">
                                                 <i style="width:20px; height:20px;" class="fas fa-search" aria-hidden="true"></i>
-                                            Search by conditions</a>
+                                            Search events by conditions</a>
 
                                         <a class="nav-link" href="{{ route('events.index') }}" style="text-decoration: underline">
                                                 <i style="width:20px; height:20px;" class="fas fa-icons" aria-hidden="true"></i>
                                             Event</a>
+
+                                         <a class="nav-link" href="{{ route('users.notice') }}" style="text-decoration: underline">
+                                                <i style="width:20px; height:20px;" class="far fa-envelope" aria-hidden="true"></i>
+                                             Notice</a>
 
                                         <a class="nav-link" href="{{ route('users.showProfile') }}" style="text-decoration: underline">
                                                 <i style="width:20px; height:20px;" class="far fa-address-card" aria-hidden="true"></i>
@@ -115,28 +114,7 @@
                             </div>
 
                                 @endguest
-                            </ul>
-
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.showProfile') }}">
-                                    <i style="width:20px; height:20px;" class="far fa-address-card" aria-hidden="true"></i>
-                                </a>
-                            </li> --}}
-                                                                {{-- <li class="nav-item">
-                                        <div>
-                                            <a class="nav-link" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                <i class="fas fa-file-export" aria-hidden="true"></i>
-                                                Logout
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li> --}}
-
-
+                        </ul>
                         </div>
                     </div>
                 </nav>

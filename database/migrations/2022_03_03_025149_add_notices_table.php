@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AdddUserIdTable extends Migration
+class AddNoticesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class AdddUserIdTable extends Migration
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            // $table->dropForeign('events_hold_user_id_foreign');
-            $table->dropColumn('hold_user_id');
-            // $table->bigInteger('user_id')->unsigned();
-            // $table->foreign('hold_user_id')->references('id')->on('users')->onDelete('CASCADE');
+        Schema::table('notices', function (Blueprint $table) {
+
+            $table->longText('url');
         });
+
     }
 
     /**

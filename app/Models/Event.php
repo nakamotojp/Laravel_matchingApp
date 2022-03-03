@@ -44,9 +44,12 @@ class Event extends Model
         $judge = Reserve::where('user_id',Auth::user()->id)->where('event_id',$id)->exists();
 
         if($judge){
-            $step = Reserve::where('user_id',Auth::user()->id)->where('event_id',$id)->first(['step']);
+            $step = Reserve::where('user_id',Auth::user()->id)->where('event_id',$id)->value('step');
+
             return $step;
+
         }else{
+
             $step = '0';
             return $step;
         }
