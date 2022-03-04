@@ -11,7 +11,7 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hold_user_id',
+        'user_id',
         'name',
         'title',
         'address',
@@ -32,6 +32,16 @@ class Event extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function reserves()
+    {
+        return $this->hasMany(Reserve::class);
+    }
+
+    public function notices()
+    {
+        return $this->hasMany(Notice::class);
     }
 
     public function likeDetail($id)
@@ -59,10 +69,6 @@ class Event extends Model
         }
     }
 
-    public function reserves()
-    {
-        return $this->hasMany(Reserve::class);
-    }
 
     public function reserveJudge($id)
     {
@@ -79,7 +85,7 @@ class Event extends Model
             return $step;
         }
     }
-    
+
 
 
 }

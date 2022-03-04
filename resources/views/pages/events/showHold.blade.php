@@ -2,9 +2,23 @@
 
 @section('content')
 <div class="row" style="height:600px; overflow: scroll;">
+
         <p style="text-decoration: underline">hold event!</p>
         <form enctype="multipart/form-data" method="POST" action="{{ route('events.post') }}">
           @csrf
+
+            <div class="form-group" id="eventform" style="margin-top:10px;">
+                @if ($errors->any())
+                <div class="alert alert-danger" style="width:350px;">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            </div>
 
             <div class="form-group" id="eventform" style="margin-top:10px;">
                 <label for="age">event name.</label>
@@ -50,8 +64,8 @@
                         <option value="6">6</option>
                         <option value="7">7</option>
                         <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10 or more</option>
+                        <option value="9">9 or more</option>
+
                     </select>
                 </label>
             </div>
@@ -69,15 +83,15 @@
                         <option value="6">trip with</option>
                         <option value="7">online</option>
                         <option value="9"></option>
-                        <option value="10"></option>
+
                     </select>
                 </label>
             </div>
 
 
             <div class="form-group" id="eventform">
-                <label for="content">content.</label>
-                <textarea type="text" name="content" class="form-control" rows="8" value="{{ old('content') }}"></textarea>
+                <label for="content">introduce.</label>
+                <textarea type="text" name="introduce" class="form-control" rows="8" value="{{ old('content') }}"></textarea>
             </div>
 
             <div class="mt-3" style="float: right">

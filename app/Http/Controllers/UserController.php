@@ -47,12 +47,24 @@ class UserController extends Controller
 
     public function storeProfile(Request $request)
     {
+       $this->profileValidate($request);
+
+       DB::beginTransaction();
+
+       try{
+
         Profile::create([
             'user_id' => Auth::user()->id,
             'age' => $request->input('age'),
             'income' => $request->input('income'),
             'introduce' => $request->input('introduce'),
         ]);
+        DB::commit();
+
+    }catch (\Exception $exception) {
+    DB::rollback();
+    return redirect('/events/hold')->with('flash_message', 'sysytem error. please try again');
+    }
 
         return redirect(url('/profile'))->with('flash_message', 'posting successful！');
     }
@@ -135,6 +147,19 @@ class UserController extends Controller
         DB::table('reserves')->where('user_id',$notice->from_user_id)->where('event_id',$notice->event_id)->update(['step' => 3]);
 
         return redirect(url('/notice'))->with('flash_message', 'Declined！');
+    }
+
+    public function profileValidate($request)
+    {
+        $request->validate([
+            'age' => 'required|regex:/^[0-9]+$/i',
+            'income' => 'required|regex:/^[0-9]+$/i',
+            'introduce' => 'required|max:2000',
+            'datetime' => 'required|after:"now"',
+        ],[
+            'age.required' => 'name is required.',
+            'introduce.required' => 'title is required'
+        ]);
     }
 }
 

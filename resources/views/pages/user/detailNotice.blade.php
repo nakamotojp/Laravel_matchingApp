@@ -40,12 +40,13 @@
             <div class="col" style="margin-bottom: 50px; padding-top:30px;">
                 <p>Do you approve attendance at the event?</p>
                 <div class="d-flex align-items-center justify-content-center">
-                    @if($notice->reserveJudge($notice->from_user_id, $notice->event_id) == 1)
+                    <?php $check = $notice->reserveJudge($notice->toEvent->id); ?>
+                    @if($check == 1)
                     <a class="btn btn-outline-info" href="{{ route('yesEvent', $notice->id )}}">YES</a>
                     <a class="btn btn-outline-info" href="{{ route('noEvent', $notice->id )}}" style="margin-left:150px;">NO</a>
-                    @elseif($notice->reserveJudge($notice->from_user_id, $notice->event_id) == 2)
+                    @elseif($check == 2)
                     <button type="button" class="btn btn-outline-info" disabled>already approved</button>
-                    @elseif($notice->reserveJudge($notice->from_user_id, $notice->event_id) == 3)
+                    @elseif($check == 3)
                     <button type="button" class="btn btn-outline-info" disabled>already canceled</button>
                     @endif
                 </div>

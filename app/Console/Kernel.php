@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,10 +14,22 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
-    {
-        // $schedule->command('inspire')->hourly();
-    }
+    // protected function schedule(Schedule $schedule)
+    // {
+    //     $schedule->call(function () {
+    //         Log::info('毎分ログ出力テスト - closure');
+    //     })->everyMinute();
+    // }
+
+    // protected function schedule(Schedule $schedule)
+    // {
+    //     $schedule->call(function () {
+
+    //         $step = Reserve::where('step',3)->
+
+
+    //     })->everyMinute();
+    // }
 
     /**
      * Register the commands for the application.

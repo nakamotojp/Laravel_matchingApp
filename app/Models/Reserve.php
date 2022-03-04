@@ -13,5 +13,6 @@ class Reserve extends Model
         'user_id',
         'step',
         'event_id',
+        'holder_id',
     ];
 }

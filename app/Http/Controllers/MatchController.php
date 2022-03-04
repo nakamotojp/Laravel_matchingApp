@@ -8,8 +8,7 @@ use App\Models\User;
 use App\Models\Chat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -59,11 +58,26 @@ class MatchController extends Controller
 
         $toUserId = $request->input('to_user_id');
 
+        DB::beginTransaction();
+
+        try{
+
         Chat::create([
             'from_user_id' => Auth::user()->id,
             'to_user_id' => $toUserId,
             'chat' => $request->input('message'),
         ]);
+
+        DB::commit();
+
+        }catch (\Exception $exception) {
+        DB::rollback();
+
+        $error = 'systemerror. please try again.';
+        return response()->json($error);
+        // jsに処理書いてない。アラート出す予定
+
+        }
 
         $Chats = Chat::whereIn('from_user_id',[$toUserId,Auth::user()->id])->whereIn('to_user_id',[$toUserId,Auth::user()->id])->get();
 

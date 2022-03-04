@@ -38,13 +38,21 @@ class Notice extends Model
         return $this->belongsTo('\App\Models\Event', 'event_id', 'id');
     }
 
-    public function reserveJudge($from_user_id, $event_id)
+    public function reserveJudge($event_id)
     {
-        $reserver_id = Auth::user()->id;
 
-        $reserve = Reserve::where('user_id',$from_user_id)->where('event_id',$event_id)->first();
+        $auth_id = Auth::user()->id;
 
-        if($reserve->step == 1 && $reserve->user_id != $reserver_id){
+        $holder_id = Event::where('id',$event_id)->value('user_id');
+
+        $reserve = Reserve::where('user_id',$auth_id)->where('event_id',$event_id)->first();
+
+        if(empty($reserve)){
+
+            $reserve = Reserve::where('user_id',$holder_id)->where('event_id',$event_id)->first();
+        }
+
+        if($reserve->step == 1 && $reserve->user_id != $auth_id){
 
             return 1;
 
