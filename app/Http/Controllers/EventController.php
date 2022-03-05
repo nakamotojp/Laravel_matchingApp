@@ -35,9 +35,9 @@ class EventController extends Controller
         Storage::putFileAs('public/images', $request->file('image'), $fileName);
         $fullFilePath = '/storage/images/'.$fileName;
 
-        // DB::beginTransaction();
+        DB::beginTransaction();
 
-        // try{
+        try{
         Event::create([
             'user_id' => Auth::user()->id,
             'name' => $request->input('name'),
@@ -51,12 +51,12 @@ class EventController extends Controller
             'introduce' => $request->input('introduce'),
         ]);
 
-        // DB::commit();
+        DB::commit();
 
-        // }catch (\Exception $exception) {
-        // DB::rollback();
-        // return redirect('/events/hold')->with('flash_message', 'sysytem error. please try again');
-        // }
+        }catch (\Exception $exception) {
+        DB::rollback();
+        return redirect('/events/hold')->with('flash_message', 'sysytem error. please try again');
+        }
 
         return redirect(url('/events/list'))->with('flash_message', 'holding successful！');
 
@@ -153,6 +153,19 @@ class EventController extends Controller
 
         return redirect(url('/events/detail',$id))->with('flash_message', 'decline participation!');
 
+    }
+
+    public function showHeld(){
+
+        $reserved = Event::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+
+        return view('pages.events.reserved', compact('reserved'));
+
+    }
+
+    public function showSearch()
+    {
+        return view('pages.events.showSearch');
     }
 
 

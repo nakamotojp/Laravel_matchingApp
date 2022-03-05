@@ -27,7 +27,7 @@
 
             <div class="form-group" id="eventform">
                 <label for="title">title.</label>
-                <input id="title" name="title" class="form-control" value="" type="text">
+                <input id="title" name="title" class="form-control" value="{{ old('title') }}" type="text">
             </div>
 
             <div class="form-group" id="eventform">
@@ -42,7 +42,7 @@
 
             <p>date</p>
             <div class="form-group" id="eventform">
-                <input name="datetime" type="date">
+                <input name="datetime" type="date" value="{{ old('datetime') }}">
             </div>
 
             <div class="form-group" id="eventform">
@@ -55,16 +55,16 @@
                 <label>
                     <select name="number">
                         <option selected>number of people.</option>
-                        <option value="0">undecided</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9 or more</option>
+                        <option value="0" @if(old('number') === '0') selected @endif>undecided</option>
+                        <option value="1" @if(old('number') === '1') selected @endif>1</option>
+                        <option value="2" @if(old('number') === '2') selected @endif>2</option>
+                        <option value="3" @if(old('number') === '3') selected @endif>3</option>
+                        <option value="4" @if(old('number') === '4') selected @endif>4</option>
+                        <option value="5" @if(old('number') === '5') selected @endif>5</option>
+                        <option value="6" @if(old('number') === '6') selected @endif>6</option>
+                        <option value="7" @if(old('number') === '7') selected @endif>7</option>
+                        <option value="8" @if(old('number') === '8') selected @endif>8</option>
+                        <option value="9" @if(old('number') === '9') selected @endif>9 or more</option>
 
                     </select>
                 </label>
@@ -74,16 +74,15 @@
                 <label>
                     <select name="type">
                         <option selected>event type.</option>
-                        <option value="0">undecided</option>
-                        <option value="1">date</option>
-                        <option value="2">go out drinking</option>
-                        <option value="3">sexual</option>
-                        <option value="4">party</option>
-                        <option value="5">outdoor</option>
-                        <option value="6">trip with</option>
-                        <option value="7">online</option>
-                        <option value="9"></option>
-
+                        <option value="0" @if(old('type') === '0') selected @endif>undecided</option>
+                        <option value="1" @if(old('type') === '1') selected @endif>date</option>
+                        <option value="2" @if(old('type') === '2') selected @endif>go out drinking</option>
+                        <option value="3" @if(old('type') === '3') selected @endif>sexual</option>
+                        <option value="4" @if(old('type') === '4') selected @endif>party</option>
+                        <option value="5" @if(old('type') === '5') selected @endif>outdoor</option>
+                        <option value="6" @if(old('type') === '6') selected @endif>trip with</option>
+                        <option value="7" @if(old('type') === '7') selected @endif>online</option>
+                        <option value="8" @if(old('type') === '8') selected @endif>other</option>
                     </select>
                 </label>
             </div>
@@ -91,7 +90,7 @@
 
             <div class="form-group" id="eventform">
                 <label for="content">introduce.</label>
-                <textarea type="text" name="introduce" class="form-control" rows="8" value="{{ old('content') }}"></textarea>
+                <textarea type="text" name="introduce" class="form-control" rows="8">{{ old('introduce') }}</textarea>
             </div>
 
             <div class="mt-3" style="float: right">

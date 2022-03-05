@@ -8,16 +8,13 @@
             <a href="{{ route('events.list') }}">recent posts</a>
         </div>
         <div class="choice border d-flex align-items-center justify-content-center">
-            <a href="">search</a>
-        </div>
-        <div class="choice border d-flex align-items-center justify-content-center">
-            <a href="">popular</a>
+            <a href="{{ route('events.showSearch')}}">search</a>
         </div>
         <div class="choice border d-flex align-items-center justify-content-center">
             <a href="{{ route('events.hold')}}">Let's hold</a>
         </div>
         <div class="choice border d-flex align-items-center justify-content-center">
-            <a href="">you holding & held</a>
+            <a href="{{ route('events.held')}}">you holding & held</a>
         </div>
         <div class="choice border d-flex align-items-center justify-content-center">
             <a href="{{ route('events.reserved')}}">reserved</a>
