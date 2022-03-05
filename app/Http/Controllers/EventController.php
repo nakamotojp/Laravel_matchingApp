@@ -8,6 +8,7 @@ use App\Models\Like;
 use App\Models\Notice;
 use App\Models\Reserve;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -100,8 +101,6 @@ class EventController extends Controller
         $event = Event::find($id);
         $from_user = $event->user()->first();
 
-        $holder_id = $event->user_id;
-
         $user_id = Auth::user()->id;
 
         $message = config('message.notice_message');
@@ -115,7 +114,6 @@ class EventController extends Controller
             'user_id' => $user_id,
             'event_id' => $id,
             'step' => '1',
-            'holder_id' => $holder_id,
         ]);
 
         Notice::create([
@@ -229,4 +227,35 @@ class EventController extends Controller
         ]);
         // ↑つまらないので飛ばす
     }
+
+// タスクスケジューラ調整用
+    // public function batch(){
+
+        // $message = config('message.yesterday_message');
+        // $content = config('message.yesterday_content');
+
+    //     $carbon = new Carbon();
+    //     $carbon = $carbon->addDays(1);
+
+    //     $ids = Reserve::where('step',2)->pluck('id');
+
+    //    for($i = 0; $i<count($ids); $i++){
+
+    //         $reserve = Reserve::find($ids[$i]);
+
+    //         $event = Event::find($reserve->event_id);
+
+    //         if($event->datetime <= $carbon){
+
+    //             Notice::create([
+    //                 'from_user_id' => $event->user_id,
+    //                 'to_user_id' => $reserve->user_id,
+    //                 'message' => $message,
+    //                 'content' => $content,
+    //                 'check' => 0,
+    //                 'event_id' => $event->id,
+    //             ]);
+    //         }
+    //    }
+    // }
 }

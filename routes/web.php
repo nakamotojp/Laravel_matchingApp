@@ -57,6 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/events/liked', [EventController::class, 'liked'])->name('events.liked');
     Route::post('/events/like', [EventController::class, 'like'])->name('events.like');
 
+    Route::get('/test', [EventController::class, 'batch'])->name('test.batch');
+
 
 
 });

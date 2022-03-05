@@ -10,9 +10,16 @@ class Reserve extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'user_id',
         'step',
         'event_id',
-        'holder_id',
     ];
+
+    public function toEvent()
+    {
+        return $this->belongsTo(Event::class);
+    }
 }
+
+

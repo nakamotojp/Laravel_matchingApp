@@ -88,7 +88,7 @@ class UserController extends Controller
 
     public function notice()
     {
-        $notices = Notice::where('to_user_id',Auth::user()->id)->orderBy('created_at', 'asc')->get();
+        $notices = Notice::where('to_user_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
         $check = Notice::where('to_user_id',Auth::user()->id)->where('check',0)->exists();
 
         if($check){

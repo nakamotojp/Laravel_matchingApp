@@ -10,6 +10,9 @@ return [
 
     'nonotice_message' => 'Your application was not approved.',
     'nonotice_content' => 'I am sorry to have kept you waiting.',
+
+    'yesterday_message' => 'Tomorrow is the date of the event',
+    'yesterday_content' => 'Please do not be late or absent',
 ]
 
 ?>

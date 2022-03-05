@@ -26,7 +26,7 @@
             <a href="{{ route('events.liked')}}">liked</a>
         </div>
         <div class="choice border d-flex align-items-center justify-content-center">
-            <a href="">attended</a>
+            <a href="{{ route('test.batch')}}">attended</a>
         </div>
 
     </div>

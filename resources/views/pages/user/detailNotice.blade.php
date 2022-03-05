@@ -40,7 +40,7 @@
             <div class="col" style="margin-bottom: 50px; padding-top:30px;">
                 <p>Do you approve attendance at the event?</p>
                 <div class="d-flex align-items-center justify-content-center">
-                    <?php $check = $notice->reserveJudge($notice->toEvent->id); ?>
+                    <?php $check = $notice->reserveJudge($notice->toEvent->id,$notice->id); ?>
                     @if($check == 1)
                     <a class="btn btn-outline-info" href="{{ route('yesEvent', $notice->id )}}">YES</a>
                     <a class="btn btn-outline-info" href="{{ route('noEvent', $notice->id )}}" style="margin-left:150px;">NO</a>
