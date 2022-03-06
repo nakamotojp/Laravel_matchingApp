@@ -168,6 +168,59 @@ class EventController extends Controller
         return view('pages.events.showSearch');
     }
 
+    public function search(Request $request)
+    {
+        session()->forget('date');
+        session()->forget('sexual');
+        session()->forget('party');
+        session()->forget('outdoor');
+        session()->forget('online');
+        session()->forget('keyword');
+        session()->forget('like');
+
+
+        $query = Event::query();
+
+        if(!empty($request->input('date'))){
+            $query = $query->whereIn('type', [1,2]);
+        }
+
+        if(!empty($request->input('sexual'))){
+            $query = $query->orWhere('type',3);
+        }
+
+        if(!empty($request->input('party'))){
+            $query = $query->orWhere('type',4);
+        }
+
+        if(!empty($request->input('outdoor'))){
+            $query = $query->orWhere('type',5);
+        }
+
+        if(!empty($request->input('online'))){
+            $query = $query->orWhere('type',6);
+        }
+
+        if(!empty($request->input('keyword'))){
+
+            $word = $request->input('keyword');
+            $query = $query->where('name', 'like', '%' . $word. '%')
+            ->orWhere('title', 'like', '%' . $word . '%')
+            ->orWhere('address', 'like', '%' . $word . '%')
+            ->orWhere('introduce', 'like', '%' . $word . '%');
+
+            session(['keyword' => $word]);
+        }
+
+        if(!empty($request->input('like'))){
+            $query = $query->withCount('likes')->orderBy('likes_count', 'desc');
+        }
+
+        $events = $query->get();
+
+        return view('pages.events.showSearch', compact('events'));
+    }
+
 
 
 

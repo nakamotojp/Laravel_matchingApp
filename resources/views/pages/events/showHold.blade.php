@@ -80,9 +80,8 @@
                         <option value="3" @if(old('type') === '3') selected @endif>sexual</option>
                         <option value="4" @if(old('type') === '4') selected @endif>party</option>
                         <option value="5" @if(old('type') === '5') selected @endif>outdoor</option>
-                        <option value="6" @if(old('type') === '6') selected @endif>trip with</option>
-                        <option value="7" @if(old('type') === '7') selected @endif>online</option>
-                        <option value="8" @if(old('type') === '8') selected @endif>other</option>
+                        <option value="7" @if(old('type') === '6') selected @endif>online</option>
+                        <option value="8" @if(old('type') === '7') selected @endif>other</option>
                     </select>
                 </label>
             </div>

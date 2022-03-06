@@ -17814,3 +17814,40 @@ height:70px;
     width:4px;
     height:70px;
 }
+
+#searchpart.isActive{
+    background: #BAD3FF;
+  }
+
+  #searchpart2.isActive{
+    background: #BAD3FF;
+  }
+
+  #searchpart3.isActive{
+    background: #BAD3FF;
+  }
+
+  #searchpart4.isActive{
+    background: #BAD3FF;
+  }
+
+  #searchpart5.isActive{
+    background: #BAD3FF;
+  }
+
+  #searchpart6.isActive{
+    background: #BAD3FF;
+  }
+
+
+  .searchevents {
+  height: 498px;
+  padding: 3px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+p{
+    color:dimgrey;
+}
+
