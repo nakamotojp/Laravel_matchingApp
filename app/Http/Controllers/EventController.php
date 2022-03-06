@@ -170,35 +170,39 @@ class EventController extends Controller
 
     public function search(Request $request)
     {
-        session()->forget('date');
-        session()->forget('sexual');
-        session()->forget('party');
-        session()->forget('outdoor');
-        session()->forget('online');
-        session()->forget('keyword');
-        session()->forget('like');
-
+        $request->session()->forget('date');
+        $request->session()->forget('sexual');
+        $request->session()->forget('party');
+        $request->session()->forget('outdoor');
+        $request->session()->forget('online');
+        $request->session()->forget('keyword');
+        $request->session()->forget('like');
 
         $query = Event::query();
 
         if(!empty($request->input('date'))){
             $query = $query->whereIn('type', [1,2]);
+            session(['date' => 'isActive']);
         }
 
         if(!empty($request->input('sexual'))){
             $query = $query->orWhere('type',3);
+            session(['sexual' => 'isActive']);
         }
 
         if(!empty($request->input('party'))){
             $query = $query->orWhere('type',4);
+            session(['party' => 'isActive']);
         }
 
         if(!empty($request->input('outdoor'))){
             $query = $query->orWhere('type',5);
+            session(['outdoor' => 'isActive']);
         }
 
         if(!empty($request->input('online'))){
             $query = $query->orWhere('type',6);
+            session(['online' => 'isActive']);
         }
 
         if(!empty($request->input('keyword'))){
@@ -214,6 +218,7 @@ class EventController extends Controller
 
         if(!empty($request->input('like'))){
             $query = $query->withCount('likes')->orderBy('likes_count', 'desc');
+            session(['like' => 'isActive']);
         }
 
         $events = $query->get();
