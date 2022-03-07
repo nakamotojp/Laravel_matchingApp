@@ -27,9 +27,9 @@ class SwipeController extends Controller
 
         if($isMatch){
 
+            session(['matchId' => $request->input('to_user_id')]);
 
             return redirect(route('users.index'))->with('flash_message','Matching successful！');
-
         }
 
         return redirect(route('users.index'));

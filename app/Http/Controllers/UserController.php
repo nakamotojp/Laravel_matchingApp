@@ -16,6 +16,12 @@ class UserController extends Controller
 
     public function index()
     {
+        if(!empty(session('flash_message'))){
+
+            $matchuser = User::find(session('matchId'));
+            return view('pages.user.index',['matchuser' => $matchuser]);
+            
+        }
         $swiped = Swipe::where('from_user_id', Auth::user()->id)->get()->pluck('to_user_id');
 
         $user = User::where('id','<>',Auth::user()->id)->whereNotIn('id', $swiped)->first();
